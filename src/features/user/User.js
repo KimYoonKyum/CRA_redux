@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import {getUserInfo, editUser} from './userSlice'
+import {getUserEditInfo, editUser, resetEditUser, createUser} from './userSlice'
+import {useHistory} from 'react-router-dom'
 
 export function User() {
-  const {id, name, email, password} = useSelector(getUserInfo)
+  const { name, email, password} = useSelector(getUserEditInfo)
   const dispatch = useDispatch();
+  const history = useHistory()
 
-  const onChange = (id) => (e) => {
-    const {target:{value}} = e
-    dispatch(editUser({id, value}))
+  const onChange = (id) => ({target:{value}}) => dispatch(editUser({id, value}))
+
+  const onSubmit = () => {
+    dispatch(createUser())
+    history.push('/user/complete')
   }
+
+  useEffect(()=>{
+    dispatch(resetEditUser())
+  },[])
 
   return (
     <div className={'col'}>
@@ -27,6 +35,7 @@ export function User() {
           <input value={password} onChange={onChange('password')}/>
         </div>
       </div>
+      <button onClick={onSubmit}>{'가입하기'}</button>
     </div>
   )
 }
