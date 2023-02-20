@@ -19,6 +19,6 @@ export const listSlice = createSlice({
   }
 })
 
-export const selectList =(state) => state.list.list
+export const selectList = (state) => state.list.list
 export const {addList, deleteList} = listSlice.actions
 export default listSlice.reducer
