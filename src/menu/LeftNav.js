@@ -17,6 +17,10 @@ function LeftNav() {
     setState(false)
     history.push('/user')
   }
+  const onList = () => {
+    setState(false)
+    history.push('/list')
+  }
 
   const toggleDrawer = (toggle) => {
     setState(toggle)
@@ -32,6 +36,7 @@ function LeftNav() {
       >
         <Button variant="text" onClick={onHome}>{'Home'}</Button>
         <Button variant="text" onClick={onUser}>{'User'}</Button>
+        <Button variant="text" onClick={onList}>{'하스스톤'}</Button>
       </Drawer>
     </div>
   );
