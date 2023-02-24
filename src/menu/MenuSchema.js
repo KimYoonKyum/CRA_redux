@@ -2,6 +2,7 @@ import {User} from '../features/user/User'
 import {Main} from '../features/main/Main'
 import {UserComplete} from '../features/user/UserComplete'
 import {List} from "../features/list/List";
+import {CardListPage} from "../pages/card-list/CardListPage";
 
 export const MenuSchema = {
   '/': {
@@ -13,7 +14,7 @@ export const MenuSchema = {
   '/user/complete': {
     component: UserComplete
   },
-  '/list': {
-    component: List
+  '/card-list': {
+    component: CardListPage
   }
 }

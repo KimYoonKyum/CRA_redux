@@ -8,10 +8,8 @@ import LeftNav from "./menu/LeftNav";
 function App() {
 
   return (
-    <div className="App flex col">
+    <div className="App flex flex-one vbox">
       <LeftNav />
-      <div className="flex row">
-      </div>
       <CustomRoute />
     </div>
   );

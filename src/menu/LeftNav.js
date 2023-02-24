@@ -19,7 +19,7 @@ function LeftNav() {
   }
   const onList = () => {
     setState(false)
-    history.push('/list')
+    history.push('/card-list')
   }
 
   const toggleDrawer = (toggle) => {
