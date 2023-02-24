@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {getCardList} from "./listAPI";
+import {getCardList, getToken} from "./listAPI";
 
 export const getCardListAsync = createAsyncThunk(
   'list/getCardList',
@@ -9,10 +9,19 @@ export const getCardListAsync = createAsyncThunk(
   }
 );
 
+export const getTokenAsync = createAsyncThunk(
+  'list/getToken',
+  async (amount) => {
+    const response = await getToken(amount);
+    return response.data.access_token;
+  }
+);
+
 export const listSlice = createSlice({
   name:'list',
   initialState: {
     list: [],
+    token: '',
     isLoading: false
   },
   reducers: {
@@ -35,6 +44,13 @@ export const listSlice = createSlice({
       .addCase(getCardListAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list = action.payload;
+      })
+      .addCase(getTokenAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTokenAsync.fulfilled, (state, action) => {
+        state.isLoading = false;
+        localStorage.setItem('tk',String(action.payload))
       });
   },
 })

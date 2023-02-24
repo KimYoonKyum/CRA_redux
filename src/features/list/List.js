@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {addList, deleteList, getCardListAsync, selectIsLoading, selectList} from './listSlice'
+import {addList, deleteList, getCardListAsync, getTokenAsync, selectIsLoading, selectList} from './listSlice'
 import {Skeleton} from "@mui/material";
 export function List() {
   const list = useSelector(selectList)
@@ -18,7 +18,10 @@ export function List() {
   const onApiCall = () => {
     dispatch(getCardListAsync())
   }
-  console.log(list)
+
+  const onApiToken = () => {
+    dispatch(getTokenAsync())
+  }
 
   const renderSkeleton = () => {
     return (
@@ -38,6 +41,7 @@ export function List() {
         <button onClick={onAdd}>{'++'}</button>
         <button onClick={onDelete}>{'--'}</button>
         <button onClick={onApiCall}>{'Api call'}</button>
+        <button onClick={onApiToken}>{'Api token call'}</button>
       </div>
       <div className={'flex col'}>
         {isLoading && renderSkeleton()}
