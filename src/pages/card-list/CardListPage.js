@@ -53,7 +53,7 @@ export function CardListPage() {
     return (
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
         <SpeedDialAction
@@ -72,9 +72,9 @@ export function CardListPage() {
   return (
     <div className={'CardListPage flex flex-one center vbox'}>
       <div>{`리스트 개수 : ${list.length}`}</div>
-      <div>
-        <button onClick={onApiToken}>{'Api token call'}</button>
-      </div>
+      {/*<div>*/}
+      {/*  <button onClick={onApiToken}>{'Api token call'}</button>*/}
+      {/*</div>*/}
       {renderCardList()}
       {renderFooterDial()}
     </div>
