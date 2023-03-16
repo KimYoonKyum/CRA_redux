@@ -1,6 +1,12 @@
 import React from 'react';
 import {Button, Drawer} from "@mui/material";
 import {useHistory} from "react-router-dom";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function LeftNav() {
   const history = useHistory()
@@ -27,8 +33,19 @@ function LeftNav() {
   }
 
   return (
-    <div className="flex col">
-      <Button onClick={()=>toggleDrawer(true)}>{'Menu'}</Button>
+    <AppBar position="sticky">
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+          onClick={()=>toggleDrawer(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Toolbar>
       <Drawer
         anchor={'left'}
         open={state}
@@ -38,7 +55,7 @@ function LeftNav() {
         {/*<Button variant="text" onClick={onUser}>{'User'}</Button>*/}
         <Button variant="text" onClick={onList}>{'하스스톤'}</Button>
       </Drawer>
-    </div>
+    </AppBar>
   );
 }
 

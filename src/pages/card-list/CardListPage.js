@@ -11,6 +11,8 @@ import {
 import {Card, CardContent, Skeleton, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import React, {useEffect} from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import '../../styles/CardListPage.css'
 
 export function CardListPage() {
@@ -74,9 +76,7 @@ export function CardListPage() {
   return (
     <div className={'CardListPage flex flex-one center vbox'}>
       <div>{`리스트 개수 : ${list.length}`}</div>
-      {/*<div>*/}
-      {/*  <button onClick={onApiToken}>{'Api token call'}</button>*/}
-      {/*</div>*/}
+
       {renderCardList()}
       {renderFooterDial()}
     </div>
