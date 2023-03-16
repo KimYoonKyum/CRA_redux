@@ -9,8 +9,8 @@ import {
 } from "../../features/list/listSlice";
 import {Card, CardContent, Skeleton, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import React, {useEffect} from "react";
-import '../../styles/CardListPage.css'
 import MenuIcon from '@mui/icons-material/Menu';
+import '../../styles/CardListPage.css'
 
 export function CardListPage() {
   const list = useSelector(selectList)
