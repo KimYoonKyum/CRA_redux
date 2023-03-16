@@ -6,7 +6,7 @@ import {
   getTokenAsync,
   selectIsLoading,
   selectList
-} from "../../features/list/listSlice";
+} from "../../features/card-list/slices/CardListSlice";
 import {Card, CardContent, Skeleton, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import React, {useEffect} from "react";
 import MenuIcon from '@mui/icons-material/Menu';

@@ -35,7 +35,7 @@ function LeftNav() {
         onClose={()=>toggleDrawer(false)}
       >
         <Button variant="text" onClick={onHome}>{'Home'}</Button>
-        <Button variant="text" onClick={onUser}>{'User'}</Button>
+        {/*<Button variant="text" onClick={onUser}>{'User'}</Button>*/}
         <Button variant="text" onClick={onList}>{'하스스톤'}</Button>
       </Drawer>
     </div>

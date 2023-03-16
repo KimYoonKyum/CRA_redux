@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {addList, deleteList, getCardListAsync, getTokenAsync, selectIsLoading, selectList} from './listSlice'
+import {addList, deleteList, getCardListAsync, getTokenAsync, selectIsLoading, selectList} from '../slices/CardListSlice'
 import {Skeleton} from "@mui/material";
-export function List() {
+export function CardList() {
   const list = useSelector(selectList)
   const isLoading = useSelector(selectIsLoading)
   const dispatch = useDispatch();

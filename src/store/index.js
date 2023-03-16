@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
-import listReducer from '../features/list/listSlice';
+import listReducer from '../features/card-list/slices/CardListSlice';
 import userReducer from '../features/user/userSlice';
 
-export const store = configureStore({
+export const index = configureStore({
   reducer: {
     counter: counterReducer,
     list: listReducer,
