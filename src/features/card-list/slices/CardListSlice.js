@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {getCardList, getToken} from "../apis/CardListAPI";
+import {CardListModel} from "../models/CardListModel";
 
 export const getCardListAsync = createAsyncThunk(
   'card-list/getCardList',
-  async (amount) => {
-    const response = await getCardList(amount);
+  async (requestData,amount) => {
+    const response = await getCardList(requestData);
     return response.data.cards;
   }
 );
@@ -18,12 +19,8 @@ export const getTokenAsync = createAsyncThunk(
 );
 
 export const cardListSlice = createSlice({
-  name:'list',
-  initialState: {
-    list: [],
-    token: '',
-    isLoading: false
-  },
+  name:'cardList',
+  initialState: CardListModel,
   reducers: {
     addList: (prevState) => {
       const list = prevState.list
@@ -55,7 +52,8 @@ export const cardListSlice = createSlice({
   },
 })
 
-export const selectList = (state) => state.list.list
-export const selectIsLoading = (state) => state.list.isLoading
+export const getList = (state) => state.cardList.list
+export const getIsLoading = (state) => state.cardList.isLoading
+export const getSearchOption = (state) => state.cardList.searchOption
 export const {addList, deleteList} = cardListSlice.actions
 export default cardListSlice.reducer

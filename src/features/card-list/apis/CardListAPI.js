@@ -1,8 +1,15 @@
 import axios from "axios";
+import qs from "qs";
 
-export function getCardList() {
+export function getCardList(searchOption) {
   const accessToken = localStorage.getItem('tk')
-  return axios.get(`https://kr.api.blizzard.com/hearthstone/cards?locale=ko_KR&access_token=${accessToken}`)
+  const url = `https://kr.api.blizzard.com/hearthstone/cards`
+  const fullUrl = `${url}${qs.stringify(
+    {...searchOption,access_token:accessToken},
+    {addQueryPrefix: true, strictNullHandling: true, arrayFormat: 'repeat'}
+  )}`
+
+  return axios.get(fullUrl)
     .then((response)=>{
       console.log(response);
       return response
@@ -11,23 +18,6 @@ export function getCardList() {
       console.log(error);
     })
 }
-
-axios.interceptors.response.use(function (response) {
-  return response;
-}, async (error) => {
-
-  if (error.response?.status === 401) {
-    const tokenResponse = await getToken();
-    const accessToken = tokenResponse.data.access_token
-    localStorage.setItem('tk',String(accessToken))
-    error.config.url = `https://kr.api.blizzard.com/hearthstone/cards?locale=ko_KR&access_token=${accessToken}`
-    return await axios.request(error.config);
-  }
-
-  return Promise.reject(error);
-});
-
-
 
 export function getToken() {
   const clientId = process.env.REACT_APP_CLIENT_ID

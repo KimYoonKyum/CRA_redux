@@ -6,7 +6,7 @@ import userReducer from '../features/user/userSlice';
 export const index = configureStore({
   reducer: {
     counter: counterReducer,
-    list: listReducer,
+    cardList: listReducer,
     user: userReducer
   },
 });

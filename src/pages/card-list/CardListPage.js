@@ -4,8 +4,9 @@ import {
   deleteList,
   getCardListAsync,
   getTokenAsync,
-  selectIsLoading,
-  selectList
+  getIsLoading,
+  getList,
+  getSearchOption
 } from "../../features/card-list/slices/CardListSlice";
 import {Card, CardContent, Skeleton, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import React, {useEffect} from "react";
@@ -13,8 +14,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import '../../styles/CardListPage.css'
 
 export function CardListPage() {
-  const list = useSelector(selectList)
-  const isLoading = useSelector(selectIsLoading)
+  const list = useSelector(getList)
+  const isLoading = useSelector(getIsLoading)
+  const searchOption = useSelector(getSearchOption)
   const dispatch = useDispatch();
 
   const onApiToken = () => {
@@ -66,7 +68,7 @@ export function CardListPage() {
   }
 
   useEffect(()=>{
-    dispatch(getCardListAsync())
+    dispatch(getCardListAsync(searchOption))
   },[])
 
   return (

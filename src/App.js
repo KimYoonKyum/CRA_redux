@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import CustomRoute from './menu/CustomRoute'
-import {useHistory} from 'react-router-dom'
-import {Button} from "@mui/material";
 import LeftNav from "./menu/LeftNav";
+import './communication/index'
 
 function App() {
   return (
