@@ -89,6 +89,9 @@ export function CardListPage() {
       })
     },{threshold:0.5})
     io.observe(intersectionRef.current)
+    return () => {
+      io.disconnect()
+    }
   },[])
 
   return (
