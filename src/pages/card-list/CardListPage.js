@@ -9,6 +9,8 @@ import {
 import {Card, CardContent, Skeleton, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import React, {useEffect, useRef} from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import '../../styles/CardListPage.css'
 
 export function CardListPage() {
@@ -18,6 +20,12 @@ export function CardListPage() {
   const searchOption = useSelector(getSearchOption)
   const {page, pageSize} = searchOption
   const dispatch = useDispatch();
+
+  const onBookmark = (idx) => {
+    const bookmarkIdxList = JSON.parse(localStorage.getItem('bookmark')) || []
+    bookmarkIdxList.push(idx)
+    localStorage.setItem('bookmark',JSON.stringify(bookmarkIdxList))
+  }
 
   const renderSkeleton = () => {
     return (
@@ -37,7 +45,11 @@ export function CardListPage() {
           return (
             <Card key={card.id}>
               <CardContent>
-                <img src={card.image}/>
+                <div className={'cursor_pointer relative'} onClick={()=>onBookmark(card.id)}>
+                  <BookmarkBorderIcon />
+                  <BookmarkAddedIcon />
+                </div>
+                  <img src={card.image}/>
               </CardContent>
             </Card>
           )

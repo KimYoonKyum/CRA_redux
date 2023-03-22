@@ -1,5 +1,6 @@
 .CardListPage {
     background-color: rgb(231, 235, 240);
+    padding-top:20px;
 }
 .CardList {
     gap:10px;
