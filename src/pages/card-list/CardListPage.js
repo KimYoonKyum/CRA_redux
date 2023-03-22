@@ -1,29 +1,24 @@
 import {useDispatch, useSelector} from "react-redux";
 import {
-  addList,
-  deleteList,
   getCardListAsync,
   getTokenAsync,
   getIsLoading,
   getList,
-  getSearchOption
+  getSearchOption,
+  nextPage
 } from "../../features/card-list/slices/CardListSlice";
 import {Card, CardContent, Skeleton, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import MenuIcon from '@mui/icons-material/Menu';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import '../../styles/CardListPage.css'
 
 export function CardListPage() {
+  const intersectionRef  = useRef(null)
   const list = useSelector(getList)
   const isLoading = useSelector(getIsLoading)
   const searchOption = useSelector(getSearchOption)
+  const {page, pageSize} = searchOption
   const dispatch = useDispatch();
-
-  const onApiToken = () => {
-    dispatch(getTokenAsync())
-  }
 
   const renderSkeleton = () => {
     return (
@@ -39,7 +34,6 @@ export function CardListPage() {
   const renderCardList = () => {
     return (
       <div className={'CardList flex flex-one hbox center wrap'}>
-        {isLoading && renderSkeleton()}
         {list.map(card=>{
           return (
             <Card key={card.id}>
@@ -49,6 +43,8 @@ export function CardListPage() {
             </Card>
           )
         })}
+        {isLoading && renderSkeleton()}
+        {<div ref={intersectionRef}/>}
       </div>
     )
   }
@@ -71,12 +67,19 @@ export function CardListPage() {
 
   useEffect(()=>{
     dispatch(getCardListAsync(searchOption))
+  },[page])
+
+  useEffect(()=>{
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        dispatch(nextPage())
+      })
+    },{threshold:0.1})
+    io.observe(intersectionRef.current)
   },[])
 
   return (
     <div className={'CardListPage flex flex-one center vbox'}>
-      <div>{`리스트 개수 : ${list.length}`}</div>
-
       {renderCardList()}
       {renderFooterDial()}
     </div>

@@ -22,6 +22,12 @@ export const cardListSlice = createSlice({
   name:'cardList',
   initialState: CardListModel,
   reducers: {
+    nextPage:(prevState) => {
+      prevState.searchOption = {
+        ...prevState.searchOption,
+        page: prevState.searchOption.page + 1
+      }
+    },
     addList: (prevState) => {
       const list = prevState.list
       if(list.length >= 10) return
@@ -40,7 +46,8 @@ export const cardListSlice = createSlice({
       })
       .addCase(getCardListAsync.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload;
+        const newList = state.list
+        state.list = newList.concat(action.payload);
       })
       .addCase(getTokenAsync.pending, (state) => {
         state.isLoading = true;
@@ -55,5 +62,5 @@ export const cardListSlice = createSlice({
 export const getList = (state) => state.cardList.list
 export const getIsLoading = (state) => state.cardList.isLoading
 export const getSearchOption = (state) => state.cardList.searchOption
-export const {addList, deleteList} = cardListSlice.actions
+export const {nextPage,addList, deleteList} = cardListSlice.actions
 export default cardListSlice.reducer
