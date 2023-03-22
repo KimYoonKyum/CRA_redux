@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {
   getCardListAsync,
-  getTokenAsync,
   getIsLoading,
   getList,
   getSearchOption,
@@ -44,7 +43,7 @@ export function CardListPage() {
           )
         })}
         {isLoading && renderSkeleton()}
-        {<div ref={intersectionRef}/>}
+        <div ref={intersectionRef} style={{height:50,width:'100%'}}/>
       </div>
     )
   }
@@ -72,9 +71,11 @@ export function CardListPage() {
   useEffect(()=>{
     const io = new IntersectionObserver((entries)=>{
       entries.forEach((entry)=>{
-        dispatch(nextPage())
+        if (entry.isIntersecting) {
+          dispatch(nextPage())
+        }
       })
-    },{threshold:0.1})
+    },{threshold:0.5})
     io.observe(intersectionRef.current)
   },[])
 
