@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import '../../styles/CardListPage.css'
+import {getFireBaseDBByPath, getRowKey, insertData} from "../../utils/FirebaseUtil";
 
 export function CardListPage() {
   const intersectionRef  = useRef(null)
@@ -22,9 +23,9 @@ export function CardListPage() {
   const dispatch = useDispatch();
 
   const onBookmark = (idx) => {
-    const bookmarkIdxList = JSON.parse(localStorage.getItem('bookmark')) || []
-    bookmarkIdxList.push(idx)
-    localStorage.setItem('bookmark',JSON.stringify(bookmarkIdxList))
+    const dbRef = getFireBaseDBByPath('/cra-redux')
+    const rowKey = getRowKey(dbRef)
+    insertData(dbRef, String(rowKey), {bookmarkInfo:{idx:idx}}, ()=>{}, ()=>{})
   }
 
   const renderSkeleton = () => {
@@ -49,7 +50,7 @@ export function CardListPage() {
                   <BookmarkBorderIcon />
                   <BookmarkAddedIcon />
                 </div>
-                  <img src={card.image}/>
+                <img src={card.image}/>
               </CardContent>
             </Card>
           )
