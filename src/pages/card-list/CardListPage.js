@@ -22,12 +22,6 @@ export function CardListPage() {
   const {page, pageSize} = searchOption
   const dispatch = useDispatch();
 
-  const onBookmark = (idx) => {
-    const dbRef = getFireBaseDBByPath('/cra-redux')
-    const rowKey = getRowKey(dbRef)
-    insertData(dbRef, String(rowKey), {bookmarkInfo:{idx:idx}}, ()=>{}, ()=>{})
-  }
-
   const renderSkeleton = () => {
     return (
       <>
@@ -46,10 +40,6 @@ export function CardListPage() {
           return (
             <Card key={card.id}>
               <CardContent>
-                <div className={'cursor_pointer relative'} onClick={()=>onBookmark(card.id)}>
-                  <BookmarkBorderIcon />
-                  <BookmarkAddedIcon />
-                </div>
                 <img src={card.image}/>
               </CardContent>
             </Card>

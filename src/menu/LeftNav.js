@@ -19,9 +19,9 @@ function LeftNav() {
     setState(false)
     history.push('/')
   }
-  const onUser = () => {
+  const onUserJoin = () => {
     setState(false)
-    history.push('/user')
+    history.push('/user/user-join')
   }
   const onList = () => {
     setState(false)
@@ -52,7 +52,7 @@ function LeftNav() {
         onClose={()=>toggleDrawer(false)}
       >
         <Button variant="text" onClick={onHome}>{'Home'}</Button>
-        {/*<Button variant="text" onClick={onUser}>{'User'}</Button>*/}
+        <Button variant="text" onClick={onUserJoin}>{'회원가입'}</Button>
         <Button variant="text" onClick={onList}>{'하스스톤'}</Button>
       </Drawer>
     </AppBar>
