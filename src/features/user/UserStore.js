@@ -10,5 +10,10 @@ export const UserStore = {
     name: '',
     email: '',
     password: ''
+  },
+  joinData: {
+    email:'',
+    password:'',
+    passwordConfirm:''
   }
 }

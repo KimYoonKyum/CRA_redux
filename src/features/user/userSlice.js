@@ -5,6 +5,10 @@ export const userSlice = createSlice({
   name:'user',
   initialState: UserStore,
   reducers: {
+    onChangeJoinData:(state,action) => {
+      const {id,value} = action.payload
+      state.joinData = {...state.joinData,[id]: value}
+    },
     editUser: (state,action) => {
       const {id,value} = action.payload
       state.editInfo = {...state.editInfo,[id]: value}
@@ -25,5 +29,6 @@ export const userSlice = createSlice({
 
 export const getUserEditInfo =(state) => state.user.editInfo
 export const getUserInfo =(state) => state.user.info
-export const {editUser, createUser, resetEditUser} = userSlice.actions
+export const getJoinData =(state) => state.user.joinData
+export const {editUser, createUser, resetEditUser,onChangeJoinData} = userSlice.actions
 export default userSlice.reducer
