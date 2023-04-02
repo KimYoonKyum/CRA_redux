@@ -3,15 +3,29 @@ import '../../styles/UserJoinPage.css'
 import {Button, Card, TextField} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {getJoinData, onChangeJoinData} from "../../features/user/userSlice";
+import {getFireBaseDBByPath, getRowKey, insertData} from "../../utils/FirebaseUtil";
+import {useHistory} from "react-router-dom";
 
 export function UserJoinPage() {
   const { email, password, passwordConfirm} = useSelector(getJoinData)
   const dispatch = useDispatch();
+  const history = useHistory()
+  const isDisabled = !email || !password || !passwordConfirm || (password !== passwordConfirm)
   const onChange = (id) => (e) => {
     const {target:{value}} = e
     dispatch(onChangeJoinData({id,value}))
   }
-  console.log(email,password,passwordConfirm)
+
+  const onJoinSuccess = () => {
+    history.push('/')
+  }
+
+  const onJoin = () => {
+    const dbRef = getFireBaseDBByPath('/users')
+    const rowKey = getRowKey(dbRef)
+    insertData(dbRef,rowKey,{user:{email,password}},()=>{onJoinSuccess()},()=>{console.log('fail')})
+  }
+
   return (
     <div className={'UserJoinPage flex flex-one center vbox'}>
       <Card className={'card vbox'}>
@@ -42,7 +56,7 @@ export function UserJoinPage() {
           />
         </div>
 
-        <Button className={'join-btn'}>{'Join!'}</Button>
+        <Button className={'join-btn'} onClick={onJoin} disabled={isDisabled}>{'Join!'}</Button>
       </Card>
     </div>
   )
