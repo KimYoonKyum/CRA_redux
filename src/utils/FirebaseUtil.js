@@ -1,12 +1,7 @@
 import {initializeApp} from 'firebase/app'
-import {child, DatabaseReference, get, getDatabase, push, ref, set} from '@firebase/database'
+import {getFirestore, addDoc, collection} from '@firebase/firestore'
 
-const getFireBaseDBByPath = (path) => {
-  if (!path) {
-    console.log('get Database failed. invalid or empty key')
-    return
-  }
-
+const getFireStoreDB = () => {
   try {
     const firebaseConfig = {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -19,54 +14,20 @@ const getFireBaseDBByPath = (path) => {
       measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
     }
     const app = initializeApp(firebaseConfig)
-    const db = getDatabase(app)
-    return ref(db, path || '')
+    return getFirestore(app)
   } catch (e) {
-    console.log('get Database failed.')
+    console.log('get FireStore Database failed.')
     return null
   }
 }
 
-const getFireBaseData = async (dbRef, path) => {
-  return await get(child(dbRef, path))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.val()
-      } else {
-        console.log('No data available')
-        return null
-      }
-    })
-    .catch((error) => {
-      console.log(error)
-      return null
-    })
-}
-
-const getRowKey = (dbRef) => {
-  return push(dbRef).key
-}
-
-const insertData = (dbRef, key, data, onSuccess, onError) => {
-  if (!key) {
-    console.log('insert failed. invalid or empty key')
-    return
+const insertData = async (db, path, data) => {
+  try {
+    const docRef = await addDoc(collection(db, path), data);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
   }
-
-  if (!data) {
-    console.log('insert failed. invalid or empty value')
-    return
-  }
-
-  const targetDbRef = child(dbRef, key)
-  set(targetDbRef, data)
-    .then(() => {
-      onSuccess()
-    })
-    .catch(() => {
-      console.log('insert error')
-      onError()
-    })
 }
 
-export {getFireBaseDBByPath, getFireBaseData, getRowKey, insertData}
+export {getFireStoreDB, insertData}

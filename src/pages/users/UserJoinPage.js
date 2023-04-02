@@ -3,7 +3,7 @@ import '../../styles/UserJoinPage.css'
 import {Button, Card, TextField} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {getJoinData, onChangeJoinData} from "../../features/user/userSlice";
-import {getFireBaseDBByPath, getRowKey, insertData} from "../../utils/FirebaseUtil";
+import {getFireStoreDB, getRowKey, insertData} from "../../utils/FirebaseUtil";
 import {useHistory} from "react-router-dom";
 
 export function UserJoinPage() {
@@ -17,13 +17,24 @@ export function UserJoinPage() {
   }
 
   const onJoinSuccess = () => {
-    history.push('/')
+    // history.push('/')
+    console.log('success')
+  }
+
+  const onJoinFail = () => {
+    // history.push('/')
+    console.log('fail')
   }
 
   const onJoin = () => {
-    const dbRef = getFireBaseDBByPath('/users')
-    const rowKey = getRowKey(dbRef)
-    insertData(dbRef,rowKey,{user:{email,password}},()=>{onJoinSuccess()},()=>{console.log('fail')})
+    const db = getFireStoreDB()
+    console.log(db)
+
+    insertData(db,`users`,{email,password}).then(()=>{
+      onJoinSuccess()
+    }).catch(()=>{
+      onJoinFail()
+    })
   }
 
   return (
