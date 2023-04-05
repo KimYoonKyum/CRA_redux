@@ -1,13 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "../../styles/UserJoinPage.css";
 import { Button, Card, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getJoinData, onChangeJoinData } from "../../features/user/userSlice";
-import {
-  getFireStoreDB,
-  getRowKey,
-  insertData,
-} from "../../utils/FirebaseUtil";
+import { getFireStoreDB, insertData } from "../../utils/FirebaseUtil";
 import { useHistory } from "react-router-dom";
 
 export function UserJoinPage() {
@@ -35,7 +31,6 @@ export function UserJoinPage() {
 
   const onJoin = () => {
     const db = getFireStoreDB();
-    console.log(db);
 
     insertData(db, `users`, { email, password })
       .then(() => {

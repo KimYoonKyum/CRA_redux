@@ -1,9 +1,7 @@
-import { User } from "../features/user/User";
 import { Main } from "../features/main/Main";
-import { UserComplete } from "../features/user/UserComplete";
-import { CardList } from "../features/card-list/components/CardList";
 import { CardListPage } from "../pages/card-list/CardListPage";
 import { UserJoinPage } from "../pages/users/UserJoinPage";
+import { LoginPage } from "../pages/login/LoginPage";
 
 export const MenuSchema = {
   "/": {
@@ -14,5 +12,8 @@ export const MenuSchema = {
   },
   "/user/user-join": {
     component: UserJoinPage,
+  },
+  "/login": {
+    component: LoginPage,
   },
 };

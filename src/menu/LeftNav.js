@@ -27,6 +27,10 @@ function LeftNav() {
     setState(false);
     history.push("/card-list");
   };
+  const onLogin = () => {
+    setState(false);
+    history.push("/login");
+  };
 
   const toggleDrawer = (toggle) => {
     setState(toggle);
@@ -52,6 +56,9 @@ function LeftNav() {
         </Button>
         <Button variant="text" onClick={onUserJoin}>
           {"회원가입"}
+        </Button>
+        <Button variant="text" onClick={onLogin}>
+          {"로그인"}
         </Button>
         <Button variant="text" onClick={onList}>
           {"하스스톤"}
