@@ -1,21 +1,21 @@
 .UserJoinPage {
-    background-color: rgb(231, 235, 240);
-    padding-top:20px;
+  background-color: rgb(231, 235, 240);
+  padding-top: 20px;
 }
 
 .UserJoinPage > .card {
-    padding: 40px;
+  padding: 40px;
 }
 
 .UserJoinPage .info {
-    gap:10px
+  gap: 10px;
 }
 .UserJoinPage .title {
-    padding:10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: cornflowerblue;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: cornflowerblue;
 }
 .UserJoinPage .join-btn {
-    margin-top:20px;
+  margin-top: 20px;
 }

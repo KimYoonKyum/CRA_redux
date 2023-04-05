@@ -1,5 +1,5 @@
-import {initializeApp} from 'firebase/app'
-import {getFirestore, addDoc, collection} from '@firebase/firestore'
+import { initializeApp } from "firebase/app";
+import { getFirestore, addDoc, collection } from "@firebase/firestore";
 
 const getFireStoreDB = () => {
   try {
@@ -12,14 +12,14 @@ const getFireStoreDB = () => {
       messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
       appId: process.env.REACT_APP_FIREBASE_APP_ID,
       measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-    }
-    const app = initializeApp(firebaseConfig)
-    return getFirestore(app)
+    };
+    const app = initializeApp(firebaseConfig);
+    return getFirestore(app);
   } catch (e) {
-    console.log('get FireStore Database failed.')
-    return null
+    console.log("get FireStore Database failed.");
+    return null;
   }
-}
+};
 
 const insertData = async (db, path, data) => {
   try {
@@ -28,6 +28,6 @@ const insertData = async (db, path, data) => {
   } catch (e) {
     console.error("Error adding document: ", e);
   }
-}
+};
 
-export {getFireStoreDB, insertData}
+export { getFireStoreDB, insertData };

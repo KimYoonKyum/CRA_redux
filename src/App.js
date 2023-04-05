@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import CustomRoute from './menu/CustomRoute'
+import React from "react";
+import "./App.css";
+import CustomRoute from "./menu/CustomRoute";
 import LeftNav from "./menu/LeftNav";
-import './communication/index'
+import "./communication/index";
 
 function App() {
   return (

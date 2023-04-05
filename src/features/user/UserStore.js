@@ -1,19 +1,19 @@
 export const UserStore = {
   editInfo: {
     id: -1,
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   },
   info: {
     id: -1,
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   },
   joinData: {
-    email:'',
-    password:'',
-    passwordConfirm:''
-  }
-}
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  },
+};
