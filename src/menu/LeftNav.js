@@ -11,6 +11,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 function LeftNav() {
   const history = useHistory();
   const [state, setState] = React.useState(false);
+  const isLogin = localStorage.getItem("token");
+  console.log(isLogin);
   const onBack = () => {
     setState(false);
     history.goBack();
@@ -59,18 +61,26 @@ function LeftNav() {
         <Button variant="text" onClick={onHome}>
           {"Home"}
         </Button>
-        <Button variant="text" onClick={onUserJoin}>
-          {"회원가입"}
-        </Button>
-        <Button variant="text" onClick={onLogin}>
-          {"로그인"}
-        </Button>
-        <Button variant="text" onClick={onList}>
-          {"하스스톤"}
-        </Button>
-        <Button variant="text" onClick={onLine}>
-          {"라인"}
-        </Button>
+        {!isLogin && (
+          <>
+            <Button variant="text" onClick={onUserJoin}>
+              {"회원가입"}
+            </Button>
+            <Button variant="text" onClick={onLogin}>
+              {"로그인"}
+            </Button>
+          </>
+        )}
+        {isLogin && (
+          <>
+            <Button variant="text" onClick={onList}>
+              {"하스스톤"}
+            </Button>
+            <Button variant="text" onClick={onLine}>
+              {"라인"}
+            </Button>
+          </>
+        )}
       </Drawer>
     </AppBar>
   );
