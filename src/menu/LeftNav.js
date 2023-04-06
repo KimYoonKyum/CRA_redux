@@ -32,6 +32,11 @@ function LeftNav() {
     history.push("/login");
   };
 
+  const onLine = () => {
+    setState(false);
+    history.push("/graphics/line");
+  };
+
   const toggleDrawer = (toggle) => {
     setState(toggle);
   };
@@ -62,6 +67,9 @@ function LeftNav() {
         </Button>
         <Button variant="text" onClick={onList}>
           {"하스스톤"}
+        </Button>
+        <Button variant="text" onClick={onLine}>
+          {"라인"}
         </Button>
       </Drawer>
     </AppBar>
