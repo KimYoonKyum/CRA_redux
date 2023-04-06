@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/UserJoinPage.css";
 import { Button, Card, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getJoinData, onChangeJoinData } from "../../features/user/userSlice";
+import { getJoinData, onChangeJoinData } from "../../features/user/UserSlice";
 import { getFireStoreDB, insertData } from "../../utils/FirebaseUtil";
 import { useHistory } from "react-router-dom";
 

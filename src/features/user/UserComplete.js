@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { editUser, getUserInfo, createUser } from "./userSlice";
+import { editUser, getUserInfo, createUser } from "./UserSlice";
 import { useHistory } from "react-router-dom";
 
 export function UserComplete() {

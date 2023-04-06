@@ -1,4 +1,4 @@
-export const UserStore = {
+export const UserModel = {
   editInfo: {
     id: -1,
     name: "",

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserStore } from "./UserStore";
+import { UserModel } from "./UserModel";
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: UserStore,
+  initialState: UserModel,
   reducers: {
     onChangeJoinData: (state, action) => {
       const { id, value } = action.payload;

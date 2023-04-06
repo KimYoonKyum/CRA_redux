@@ -5,7 +5,7 @@ import {
   getList,
   getSearchOption,
   nextPage,
-} from "../../features/card-list/slices/CardListSlice";
+} from "../../features/card-list/CardListSlice";
 import {
   Card,
   CardContent,

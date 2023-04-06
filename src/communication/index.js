@@ -1,6 +1,6 @@
 //통신 설정 파일
 import axios from "axios";
-import { getToken } from "../features/card-list/apis/CardListAPI";
+import { getToken } from "../features/card-list/CardListAPI";
 
 axios.interceptors.response.use(
   function (response) {

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCardList, getToken } from "../apis/CardListAPI";
-import { CardListModel } from "../models/CardListModel";
+import { getCardList, getToken } from "./CardListAPI";
+import { CardListModel } from "./CardListModel";
 
 export const getCardListAsync = createAsyncThunk(
   "card-list/getCardList",
